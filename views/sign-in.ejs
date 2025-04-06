@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-In</title>
+  </head>
+  <body>
+    <h1>Create an account</h1>
+    <% if(locals.errorMessage) { %>
+    <h2><%= locals.errorMessage %></h2>
+    <% } %>
+
+    <form action="/sign-in" method="post">
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        value="<%= locals.previousInputs ? previousInputs.firstName : '' %>"
+      />
+
+      <label for="lastName">Last Name:</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        value="<%= locals.previousInputs ? previousInputs.lastName : '' %>"
+      />
+      <br />
+
+      <label for="email">Email Address:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value="<%= locals.previousInputs ? previousInputs.email : '' %>"
+      />
+      <br />
+
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        value="<%= locals.previousInputs ? previousInputs.username : '' %>"
+      />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+
+      <button type="submit">Sign-In</button>
+    </form>
+  </body>
+</html>
