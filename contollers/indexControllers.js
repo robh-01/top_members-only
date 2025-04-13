@@ -2,6 +2,7 @@ import { userValidations } from "../validations/userValidations.js";
 import { validationResult } from "express-validator";
 
 import * as queries from "../db/queries.js";
+import { passport } from "../configs/passport.config.js";
 
 export function indexPageGet(req, res, next) {
   res.render("index", { user: req.user });
@@ -27,7 +28,13 @@ export const signInPost = [
       });
     }
     await queries.createUser(user);
-    res.send("Sign-in successful.")
-    
+    res.send("Sign-in successful.");
   },
+];
+
+export const logInPost = [
+  passport.authenticate("local", {
+    successRedirect: "/success",
+    failureRedirect: "/failure",
+  }),
 ];
