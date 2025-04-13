@@ -34,7 +34,7 @@ export const signInPost = [
 
 export const logInPost = [
   passport.authenticate("local", {
-    successRedirect: "/success",
+    successRedirect: "/",
     failureRedirect: "/failure",
   }),
 ];
