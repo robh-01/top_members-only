@@ -4,8 +4,9 @@ import { validationResult } from "express-validator";
 import * as queries from "../db/queries.js";
 import { passport } from "../configs/passport.config.js";
 
-export function indexPageGet(req, res, next) {
-  res.render("index", { user: req.user });
+export async function indexPageGet(req, res, next) {
+  const messages = await queries.getAllMessages();
+  res.render("index", { user: req.user, messages });
 }
 
 export function signInGet(req, res, next) {

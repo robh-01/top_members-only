@@ -22,5 +22,10 @@
     </form>
     <a href="/sign-in">I don't have an account!!</a>
     <% } %>
+    <ul>
+    <% locals.messages.map(message => { %>
+      <li> <%= message.message %></li>
+      <% }); %>
+    </ul>
   </body>
 </html>

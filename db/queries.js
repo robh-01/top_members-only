@@ -15,3 +15,13 @@ export async function createUser(user) {
     ]
   );
 }
+
+export async function getAllMessages() {
+  try {
+    const {rows} = await pool.query("SELECT * FROM messages;");
+    return rows;
+  } catch (err) {
+    console.log("error in retrieving messages");
+    return false;
+  }
+}
