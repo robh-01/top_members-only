@@ -10,7 +10,9 @@
     <% if(locals.user) {%>
       Welcome back <%= user.firstname %>
       <br>
-      <button>Add messages</button>
+      <button><a href="/add-message">Add messages</a></button>
+      <br>
+      <button><a href="/log-out">Log Out</a></button>
       <% } else{ %> 
         Log-in to add messages.
     <form action="/log-in" method="post">
