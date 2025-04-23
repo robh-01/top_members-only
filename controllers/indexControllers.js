@@ -48,3 +48,11 @@ export function logOutGet(req, res, next) {
     res.redirect("/");
   });
 }
+
+export function addMessageGet(req, res, next) {
+  if (req.user) {
+    res.render("add-message");
+  } else {
+    res.status(403).redirect("/");
+  }
+}
