@@ -17,8 +17,9 @@ username VARCHAR(255),
 firstName VARCHAR(255),
 lastName VARCHAR(255),
 email TEXT,
-password TEXT
+password TEXT,
 isadmin BOOLEAN DEFAULT false,
+ismember BOOLEAN DEFAULT false
 );
 `;
 
