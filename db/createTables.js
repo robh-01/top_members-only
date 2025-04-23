@@ -1,9 +1,5 @@
 import pool from "./pool.js";
 
-function generateId() {
-  return crypto.randomUUID();
-}
-
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages(
 id TEXT,
