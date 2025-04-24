@@ -24,10 +24,23 @@
     </form>
     <a href="/sign-in">I don't have an account!!</a>
     <% } %>
-    <ul>
-    <% locals.messages.map(message => { %>
-      <li> <%= message.message %></li>
-      <% }); %>
-    </ul>
+<% if (locals.messages) { %>
+  <ul>
+    <% locals.messages.forEach(message => { %>
+      <li>
+        <%= message.message %>
+        <% if(locals.user) {%>
+          <% if(user.ismember)  {%>
+          added by: <%= message.userName %> at: <%= message.creationDate %>
+        <% } %>
+          <% } %>
+      </li>
+
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>Unable to retrieve messages</p>
+<% } %>
+
   </body>
 </html>

@@ -6,7 +6,7 @@ import * as queries from "../db/queries.js";
 import { passport } from "../configs/passport.config.js";
 
 export async function indexPageGet(req, res, next) {
-  const messages = await queries.getAllMessages();
+  const messages = await queries.getAllMessages(); //get all messages(an object with elements: message object with message text, username(who added the message) and added date)
   res.render("index", { user: req.user, messages });
 }
 
