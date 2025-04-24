@@ -12,5 +12,6 @@ indexRouter.get("/add-message", indexController.addMessageGet);
 indexRouter.post("/add-message", indexController.addMessagePost);
 indexRouter.get("/become-member", indexController.becomeMemberGet);
 indexRouter.post("/become-member", indexController.becomeMemberPost);
+indexRouter.get("/delete/:msgId", indexController.deleteMessageGet);
 
 export { indexRouter };

@@ -111,3 +111,17 @@ export function becomeMemberPost(req, res, next) {
     }
   }
 }
+
+export async function deleteMessageGet(req, res, next) {
+  if (!req.user) {
+    res.status(403).redirect("/");
+  } else {
+    if (req.user.isadmin) {
+      const { msgId } = req.params;
+      await queries.deleteMessage(msgId);
+      res.redirect("/");
+    } else {
+      res.status(403).redirect("/");
+    }
+  }
+}

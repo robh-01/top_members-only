@@ -35,6 +35,9 @@
           <% if(user.ismember)  {%>
           added by: <%= message.userName %> at: <%= message.creationDate %>
         <% } %>
+           <% if(user.isadmin) { %> 
+            <button><a href="<%= `/delete/${message.msgId}`%>">Delete</a></button>
+          <% } %>
           <% } %>
       </li>
 

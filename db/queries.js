@@ -17,6 +17,7 @@ async function getMessageInfo(messageId) {
   const { rows } = await pool.query("SELECT * FROM messages WHERE id=$1", [
     messageId,
   ]);
+  const msgId = rows[0].id;
   const message = rows[0].message;
   const creationDate = rows[0].created_at;
   const userInfo = await getUserInfo(rows[0].userid);
@@ -26,7 +27,7 @@ async function getMessageInfo(messageId) {
   } else {
     userName = "Not available";
   }
-  return { message, userName, creationDate };
+  return { msgId, message, userName, creationDate };
 }
 
 export async function createUser(user) {
@@ -69,6 +70,16 @@ export async function makeMember(userId) {
     return true;
   } catch (err) {
     console.log("error in making member");
+    return false;
+  }
+}
+
+export async function deleteMessage(messageId) {
+  try {
+    await pool.query("DELETE FROM messages WHERE id=$1", [messageId]);
+    return true;
+  } catch (err) {
+    console.log("error deleting the message");
     return false;
   }
 }
