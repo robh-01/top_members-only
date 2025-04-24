@@ -1,1 +1,23 @@
-add message page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a message</title>
+  </head>
+  <body>
+    <h1>Add a message to the club-house</h1>
+    <% if(locals.errorMessage) { %>
+    <h2><%= locals.errorMessage %></h2>
+    <% } %>
+
+    <form action="/add-message" method="post">
+      <label for="message">Message:</label>
+      <p>Keep your messages at most 50 characters long because I don't own a big database</p>
+      <textarea name="message" id="message" maxlength="50" style="width: 500px; height: 200px;"><%= locals.previousInputs ?
+      previousInputs.message : '' %></textarea>
+        <br>
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>

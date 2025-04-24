@@ -9,5 +9,6 @@ indexRouter.post("/sign-in", indexController.signInPost);
 indexRouter.post("/log-in", indexController.logInPost);
 indexRouter.get("/log-out", indexController.logOutGet);
 indexRouter.get("/add-message", indexController.addMessageGet);
+indexRouter.post("/add-message", indexController.addMessagePost);
 
 export { indexRouter };

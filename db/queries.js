@@ -16,9 +16,16 @@ export async function createUser(user) {
   );
 }
 
+export async function createMessage(message, user) {
+  await pool.query(
+    "INSERT INTO messages(id, message, userid) VALUES($1, $2, $3)",
+    [generateRandomId(), message, user.id]
+  );
+}
+
 export async function getAllMessages() {
   try {
-    const {rows} = await pool.query("SELECT * FROM messages;");
+    const { rows } = await pool.query("SELECT * FROM messages;");
     return rows;
   } catch (err) {
     console.log("error in retrieving messages");

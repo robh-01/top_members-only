@@ -1,4 +1,5 @@
 import { userValidations } from "../validations/userValidations.js";
+import { messageValidations } from "../validations/messageValidations.js";
 import { validationResult } from "express-validator";
 
 import * as queries from "../db/queries.js";
@@ -24,7 +25,7 @@ export const signInPost = [
       const errorMessages = errors.map((error) => error.msg);
 
       return res.status(400).render("sign-in", {
-        errorMessage: errorMessages[0],
+        errorMessage: errorMessages[0], //send only one error message for clean ui
         previousInputs: { ...user },
       });
     }
@@ -56,3 +57,32 @@ export function addMessageGet(req, res, next) {
     res.status(403).redirect("/");
   }
 }
+
+export const addMessagePost = [
+  messageValidations,
+  async (req, res, next) => {
+    const { errors } = validationResult(req);
+    const { message } = req.body;
+    const user = req.user;
+
+    if (errors.length != 0) {
+      const errorMessages = errors.map((error) => error.msg);
+
+      return res.status(400).render("add-message", {
+        errorMessage: errorMessages[0], //send only one error message for better ui
+        previousInputs: { message },
+      });
+    }
+
+    if (user) {
+      try {
+        queries.createMessage(message, user);
+        res.redirect("/");
+      } catch (err) {
+        res.status(500).redirect("/");
+      }
+    } else {
+      res.status(403).redirect("/");
+    }
+  },
+];
