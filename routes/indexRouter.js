@@ -10,5 +10,7 @@ indexRouter.post("/log-in", indexController.logInPost);
 indexRouter.get("/log-out", indexController.logOutGet);
 indexRouter.get("/add-message", indexController.addMessageGet);
 indexRouter.post("/add-message", indexController.addMessagePost);
+indexRouter.get("/become-member", indexController.becomeMemberGet);
+indexRouter.post("/become-member", indexController.becomeMemberPost);
 
 export { indexRouter };

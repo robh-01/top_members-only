@@ -8,13 +8,15 @@
   <body>
     <h1>WELCOME TO THE CLUB-HOUSE.</h1>
     <% if(locals.user) {%>
-      Welcome back <%= user.firstname %>
-      <br>
+      <p>Welcome back <%= user.firstname %></p>
+      <% if(!user.ismember) { %>
+        <p><a href="/become-member">Become a member</a> to see usernames and added date.</p>
+      <% } %>
       <button><a href="/add-message">Add messages</a></button>
       <br>
       <button><a href="/log-out">Log Out</a></button>
       <% } else{ %> 
-        Log-in to add messages.
+        <p>Log-in to add messages.</p>
     <form action="/log-in" method="post">
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" />

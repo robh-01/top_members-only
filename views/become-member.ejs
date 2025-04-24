@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Become an member</title>
+  </head>
+  <body>
+    <h1>Solve the riddle to become a member.</h1>
+    <h2>Q: I let you see, I let you cook, I let you reduce, I let you fight. Use me carefully you shall fly and if you don't you will die.</h2>
+    <form action="/become-member" method="post">
+      <label for="answer">Answer: </label>
+      <input type="text" id="answer" name="answer" value="<%= locals.previousWrongAnswer? previousWrongAnswer : "" %>"/>
+      <br>
+      <button type="submit">Send</button>
+    </form>
+    <% if(locals.previousWrongAnswer) { %>
+      <p><%= previousWrongAnswer %> is an incorrect guess.</p>
+    <% } %>
+  </body>
+</html>

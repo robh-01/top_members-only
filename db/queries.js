@@ -62,3 +62,13 @@ export async function getAllMessages() {
     return false;
   }
 }
+
+export async function makeMember(userId) {
+  try {
+    await pool.query("UPDATE users SET ismember=true WHERE id=$1;", [userId]);
+    return true;
+  } catch (err) {
+    console.log("error in making member");
+    return false;
+  }
+}

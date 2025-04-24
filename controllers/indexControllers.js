@@ -5,6 +5,9 @@ import { validationResult } from "express-validator";
 import * as queries from "../db/queries.js";
 import { passport } from "../configs/passport.config.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 export async function indexPageGet(req, res, next) {
   const messages = await queries.getAllMessages(); //get all messages(an object with elements: message object with message text, username(who added the message) and added date)
   res.render("index", { user: req.user, messages });
@@ -86,3 +89,25 @@ export const addMessagePost = [
     }
   },
 ];
+
+export function becomeMemberGet(req, res, next) {
+  if (!req.user) {
+    res.status(403).redirect("/");
+  } else {
+    res.render("become-member");
+  }
+}
+
+export function becomeMemberPost(req, res, next) {
+  if (!req.user) {
+    res.status(403).redirect("/");
+  } else {
+    const { answer } = req.body;
+    if (answer.trim().toLowerCase() === process.env.RIDDLE_ANSWER) {
+      queries.makeMember(req.user.id);
+      res.redirect("/");
+    } else {
+      res.render("become-member", { previousWrongAnswer: answer });
+    }
+  }
+}
